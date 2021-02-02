@@ -1,14 +1,18 @@
 const initialState = {
-    filter: []
+    burger: true,
+    wrap: true,
+    taco: true
 }
 
 export const filterReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'UPDATE_FILTER':
+            console.log('action type', action)
             return {
-                filter: [action.payload.filter]
+                ...state,
+                ...action.payload
             };
         default:
-            return StaticRange;
+            return state;
     }
 }
