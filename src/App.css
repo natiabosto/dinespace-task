@@ -1,9 +1,29 @@
+:root {
+  --borderColor: rgba(0,0,0,0.1);
+}
+
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .App {
   text-align: center;
 }
 
+.shadowed-border {
+  border: 1px solid var(--borderColor);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 1px var(--borderColor);
+}
+
+.hr {
+  border-top: 1px solid var(--borderColor);
+  border-right: 1px solid var(--borderColor);
+  border-left: 1px solid var(--borderColor);
+  border-bottom: none;
+  margin: 0;
+}
