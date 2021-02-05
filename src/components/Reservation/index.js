@@ -9,7 +9,7 @@ import Search from './Search'
 const Wrapper = styled.div`
     margin-bottom: 40px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 
     .dining-option,
     .date-and-time,
@@ -21,9 +21,17 @@ const Wrapper = styled.div`
         flex: 1;
     }
 
-    .date-person__container {
-        flex: 1;
-        display: flex;
+    .dining-option,
+    .search {
+        flex: 1 100%;
+    }
+
+    .dining-option {
+        border-bottom: 1px solid var(--borderColor)
+    }
+
+    .search {
+        border-top: 1px solid var(--borderColor)
     }
 
     .person {
@@ -38,15 +46,9 @@ export const Reservation = () => {
         <Wrapper className='shadowed-border'>
             
             <DiningOption className='dining-option' />
-            
-            <hr className='hr'/>
 
-            <div className='date-person__container'>
-                <DateAndTime className='date-and-time' />
-                <Person className='person' />
-            </div>
-
-            <hr className='hr'/>
+            <DateAndTime className='date-and-time' />
+            <Person className='person' />
 
             <Search className='search' />
 
