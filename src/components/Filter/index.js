@@ -2,15 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import TuneIcon from '@material-ui/icons/Tune'
 
+import icon_1 from '../../media/icon_1.png'
+import icon_2 from '../../media/icon_2.png'
+import icon_3 from '../../media/icon_3.png'
+
 const Wrapper = styled.div`
     display: flex;    
 
     .filter-button__container {
         background-color: rgb(205 214 241 / 50%);
         border-radius: 4px;
-        padding: 7px 14px 9px 14px;
+        padding: 7px 14px 8px 14px;
         width: fit-content;
         height: fit-content;
+        user-select: none;
     }
 
     .filter-button__icon {
@@ -35,10 +40,24 @@ const Wrapper = styled.div`
         margin-top: 0px;
     }
 
-    .filter-items__container {
+    .filters__container {
         overflow-x: scroll;
         flex: 1;
         white-space: nowrap;
+        padding-left: 15px;
+        user-select: none;
+    }
+
+    .filter-item__container {
+        display: inline-block;
+        padding: 5px 20px;
+    }
+
+    .filter-item__image {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+        margin-right: 10px;
     }
 `
 
@@ -46,6 +65,30 @@ export const Filter = () => {
 
     const [filterExtended, setFilterExtended] = React.useState(true)
     const [notificationNumber, setNotificationNumber] = React.useState(4)
+
+    const filterItems = [
+        {
+            id: 1,
+            src: icon_1,
+            text: 'Pizza'
+        },
+        {
+            id: 2,
+            src: icon_2,
+            text: 'Chicken'
+        },
+        {
+            id: 3,
+            src: icon_3,
+            text: 'Burger'
+        }
+    ]
+
+    const filterRef = React.useRef(null);
+
+    filterRef.current.addEventListener('scroll', (e)=>{
+        setFilterExtended( e.target.scrollLeft === 0 )
+    })
 
     return (
         <Wrapper>
@@ -57,8 +100,15 @@ export const Filter = () => {
                     </div> 
                 }
             </div>
-            <div className='filter-items__container'>
-dfffffffffffff ffffff f f fffffffffffffff ff ffffffffff ff ffffff f f ffffffffffff ff ff ff ffffffffff f f fffffffff
+            <div className='filters__container' ref={filterRef}>
+                {
+                    filterItems.map((item, index) => {return(
+                        <div className='filter-item__container' key={index}>
+                            <img className='filter-item__image' src={item.src} />
+                            { item.text }
+                        </div>
+                    )})
+                }
             </div>
         </Wrapper>
     )
