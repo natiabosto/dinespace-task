@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 function App() {
 
   const handleScroll = (e) => {
-    console.log('scroll', e)
+  //   console.log('scroll', e)
   }
 
   React.useEffect(() => {
