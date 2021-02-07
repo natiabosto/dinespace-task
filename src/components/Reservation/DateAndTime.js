@@ -38,7 +38,7 @@ const Wrapper = styled.div`
         left: -51px;
         width: Calc( 100% + 100px);
         background-color: white;
-        z-index: 3;
+        z-index: 10;
     }
 
     .date-and-time-picker__header {
@@ -237,13 +237,13 @@ const DateAndTime = ({ className }) => {
     const [dateAndTime, setDateAndTime] = React.useState('Date and Time');
     const [isPickerOpen, setIsPickerOpen] = React.useState(false);
 
-    const [selectedDate, setNewDate] = React.useState(new Date());
+    const [selectedDate, setNewDate] = React.useState(undefined);
     const [arrivalTime, setArrivalTime] = React.useState(1);
 
     const availableReservationTimes = [
         {
             id: 1,
-            time: '13:45'
+            time: 'ASAP'
         },
         {
             id: 2,
@@ -309,6 +309,18 @@ const DateAndTime = ({ className }) => {
         }
     }
 
+    const handleDateAndTimePickerOpen = () => {
+        setNewDate(new Date());
+        setIsPickerOpen(true); 
+        setArrivalTime(1);
+    }
+
+    const handleClear = () => {
+        setNewDate(undefined);
+        setArrivalTime(1);
+        setIsPickerOpen(false);
+    }
+
     React.useEffect(() => {
         if(arrivalTimeRef.current){
             arrivalTimeRef.current.removeEventListener('scroll', handleScroll);
@@ -318,9 +330,9 @@ const DateAndTime = ({ className }) => {
 
     return (
         <Wrapper className={className}>
-            <div className='date-and-time__name' onClick={() => {setIsPickerOpen(true)}}>
+            <div className='date-and-time__name' onClick={handleDateAndTimePickerOpen}>
                 <CalendarTodayIcon className='calendar__icon'/>
-                <label className='calendar-picker-label'> { selectedDate && arrivalTime ? `${selectedDate.getUTCDate()}, ${months[selectedDate.getMonth()]}, ${availableReservationTimes[arrivalTime].time}` : dateAndTime } </label>
+                <label className='calendar-picker-label'> { selectedDate && arrivalTime ? `${selectedDate.getUTCDate()}, ${months[selectedDate.getMonth()]}, ${availableReservationTimes[arrivalTime-1].time}` : dateAndTime } </label>
             </div>
             {
                 isPickerOpen ? 
@@ -358,7 +370,7 @@ const DateAndTime = ({ className }) => {
                     </div>
                     <div className='arrival-time-buttons__before'></div>
                     <div className='arrival-time-buttons__container'>
-                        <label className='arrival-time-button__clear' onClick={() => {setIsPickerOpen(false)}} >Clear</label>
+                        <label className='arrival-time-button__clear' onClick={handleClear} >Clear</label>
                         <div className='arrival-time-button__done' onClick={handleArrivalTimeSet}>Done</div>
                     </div>
                 </div>

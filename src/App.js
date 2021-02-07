@@ -22,15 +22,6 @@ const Wrapper = styled.div`
 `
 
 function App() {
-
-  const handleScroll = (e) => {
-  //   console.log('scroll', e)
-  }
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-  })
-  
   return (
     <Wrapper>
       <div className="content__container">

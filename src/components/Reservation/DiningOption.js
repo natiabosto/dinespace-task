@@ -12,6 +12,7 @@ const Wrapper = styled.div`
     padding: 16px;
     display: flex;
     position: relative;
+    z-index: 5;
 
     .dinespace-label {
         pointer-events: none;
