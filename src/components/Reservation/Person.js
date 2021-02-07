@@ -106,12 +106,12 @@ const Person = ({ className }) => {
                 personCount === 1 ?
                 <>
                     <PersonIcon className='person__icon' />
-                    <label className='dinespace-label'> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
+                    <label> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
                 </>
                 :
                 <>
                     <PeopleIcon className='person__icon' />
-                    <label className='dinespace-label'> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
+                    <label> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
                 </>
             }
             { 

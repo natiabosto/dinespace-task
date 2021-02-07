@@ -1,8 +1,9 @@
 :root {
-  --borderColor: rgba(0,0,0,0.1);
-  --grey: rgba(0,0,0,0.5);
-  --lightGrey: rgb(226 226 226);
-  --orange: rgb(251 107 4);
+  --borderColor: rgba(0, 0, 0, 0.1);
+  --grey:        rgba(0, 0, 0, 0.5);
+  --lightGrey:   rgb(226, 226, 226);
+  --orange:      rgb(252, 108, 68);
+  --purple:      rgba(91, 107, 200, 0.9);
 }
 
 body {
@@ -72,10 +73,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(236, 100, 22);
+  background: var(--orange);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(177, 75, 75);
+  background: var(--orange);
 }

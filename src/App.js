@@ -16,7 +16,8 @@ const Wrapper = styled.div`
     background-color: #ffffff;
     border-radius: 2px;
     min-height: 400px;
-    padding: 100px 50px;
+    padding: 100px 48px;
+    // position: relative;
   }
 `
 

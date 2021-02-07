@@ -86,9 +86,14 @@ export const Filter = () => {
 
     const filterRef = React.useRef(null);
 
-    filterRef.current.addEventListener('scroll', (e)=>{
-        setFilterExtended( e.target.scrollLeft === 0 )
-    })
+    React.useEffect(() => {
+        if(filterRef.current){
+            filterRef.current.addEventListener('scroll', (e)=>{
+                setFilterExtended( e.target.scrollLeft === 0 )
+            })
+        }
+        
+    }, [filterRef]);
 
     return (
         <Wrapper>
