@@ -9,15 +9,16 @@ import DateFnsUtils from '@date-io/date-fns'
 
 const Wrapper = styled.div`
     display: flex;
-    display: inline-block;
 
     .date-and-time__name {
         display: inline-block;
         padding: 16px;
         flex: 1;
+        white-space: nowrap;
 
         > * {
             pointer-events: none;
+            vertical-align: middle;
         }
     }
 
@@ -28,8 +29,10 @@ const Wrapper = styled.div`
     .calendar__icon {
         color: var(--grey);
         vertical-align: middle;
-        font-size: 19px !important;
+        font-size: 19px;
         margin-bottom: 4px;
+        // margin: 5px 7px;
+        // flex: 1;
     }
 
     .date-and-time-picker__container {
@@ -230,6 +233,98 @@ const Wrapper = styled.div`
             font-size: 24px;    
         }
     }
+    
+    @media screen and (max-width: 400px) {
+        .date-and-time__name {
+            padding: 3vw;
+        }
+
+        .calendar__icon {
+            font-size: 4vw;
+        }
+
+        .line-break__top {
+            top: 100px;
+            max-width: 80vw;
+        }
+
+        .line-break__bottom {
+            top: 170px;
+            max-width: 80vw;
+        }
+        
+        .arrival-time-buttons__before {
+            margin-top: 30px;
+        }
+
+        .arrival-time-buttons__container .arrival-time-button__clear {
+            margin: 8vw;
+        }
+
+        .arrival-time-button__done {
+            height: 40px;
+            width: fit-content;
+            padding: 1vw 15vw;
+        }
+
+        .arrival-time__options-container {
+            max-width: 98vw;
+        }
+
+        .calendar-picker__icon-arrow {
+            font-size: 8vw;
+            margin: -10px;
+        }
+
+        .calendar-picker__icon-close {
+            font-size: 10vw;
+            margin: -13px;
+        }
+
+        // datepicker overrides
+        
+            .MuiPickersCalendarHeader-transitionContainer {
+                height: 5vw;
+                margin-top: 6px;
+            }
+
+            .MuiPickersSlideTransition-transitionContainer > * {
+                font-size: 4vw;
+            }
+
+            .MuiIconButton-root {
+                font-size: 4vw;
+                height: 12vw;
+                width: 12vw;
+            }
+
+            .MuiPickersCalendarHeader-switchHeader {
+                width: 70vw;
+
+                .MuiSvgIcon-root {
+                    font-size: 9vw;
+                }
+            }
+
+            .MuiPickersCalendar-transitionContainer {
+                margin-top: 10vw;
+                min-height: 70vw;
+            }
+
+            .MuiPickersDay-day {
+                margin: 1vw;
+            }
+
+            .MuiPickersCalendarHeader-dayLabel {
+                width: 11vw;
+                font-size: 4vw;
+                margin-top: 7vw;
+            }
+
+            .MuiTypography-colorInherit {
+                font-size: 4vw;
+            }
+    }
 `
 
 const DateAndTime = ({ className }) => {
@@ -332,7 +427,7 @@ const DateAndTime = ({ className }) => {
         <Wrapper className={className}>
             <div className='date-and-time__name' onClick={handleDateAndTimePickerOpen}>
                 <CalendarTodayIcon className='calendar__icon'/>
-                <label className='calendar-picker-label'> { selectedDate && arrivalTime ? `${selectedDate.getUTCDate()}, ${months[selectedDate.getMonth()]}, ${availableReservationTimes[arrivalTime-1].time}` : dateAndTime } </label>
+                <label className='calendar-picker-label dinespace-font-size__medium'> { selectedDate && arrivalTime ? `${selectedDate.getUTCDate()}, ${months[selectedDate.getMonth()]}, ${availableReservationTimes[arrivalTime-1].time}` : dateAndTime } </label>
             </div>
             {
                 isPickerOpen ? 
@@ -341,7 +436,7 @@ const DateAndTime = ({ className }) => {
                         <ArrowBackIosIcon className='calendar__picker__icon calendar-picker__icon-arrow' onClick={() => {setIsPickerOpen(false)}} />
                         <div className='date-and-time-picker__name' onClick={() => {setIsPickerOpen(true)}}>
                             <CalendarTodayIcon className='calendar-picker__icon'/>
-                            <label className='calendar-picker-label'> { dateAndTime } </label>
+                            <label className='calendar-picker-label dinespace-font-size__medium'> { dateAndTime } </label>
                         </div>
                         <CloseIcon className='calendar__picker__icon calendar-picker__icon-close' onClick={() => {setIsPickerOpen(false)}} />
                     </div>
@@ -355,7 +450,7 @@ const DateAndTime = ({ className }) => {
                         />
                     </MuiPickersUtilsProvider>
                     <div className='arrival-time__container'>
-                        <label className='arrival-time__label'> Arrival Time </label>
+                        <label className='arrival-time__label dinespace-font-size__medium'> Arrival Time </label>
                         <div className='arrival-time__options-container' ref={arrivalTimeRef}>
                             <hr className='arrival-time__options-line-break line-break__top'key={Math.random()}/>
                         {
@@ -370,8 +465,12 @@ const DateAndTime = ({ className }) => {
                     </div>
                     <div className='arrival-time-buttons__before'></div>
                     <div className='arrival-time-buttons__container'>
-                        <label className='arrival-time-button__clear' onClick={handleClear} >Clear</label>
-                        <div className='arrival-time-button__done' onClick={handleArrivalTimeSet}>Done</div>
+                        <label className='arrival-time-button__clear dinespace-font-size__medium' onClick={handleClear} >Clear</label>
+                        <div className='arrival-time-button__done' onClick={handleArrivalTimeSet}>
+                            <label  className='dinespace-font-size__medium'>
+                                Done
+                            </label>
+                        </div>
                     </div>
                 </div>
                 : undefined

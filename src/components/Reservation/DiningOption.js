@@ -60,7 +60,6 @@ const Wrapper = styled.div`
     .option-chosen {
         display: inline-block;
         flex: 1;
-        font-size: 22px;
     }
 
     .option__icon {
@@ -71,6 +70,23 @@ const Wrapper = styled.div`
 
     .option__label {
         margin-left: 8px;
+    }
+
+    @media screen and (max-width: 350px) {
+        .option__icon {
+            font-size: 8vw;
+        }
+    }
+    
+    @media screen and (max-width: 400px) {
+        .expand-more,
+        .expand-less {
+            font-size: 10vw;
+        }
+
+        .date-and-time__name {
+            padding: 3vw;
+        }
     }
 `
 
@@ -84,7 +100,7 @@ const DiningOption = ({ className }) => {
     const diningOptions = [
         {
             id: 1,
-            icon: <FastfoodIcon className={`option__icon ${Number(diningOption) === 1 ? 'option-chosen' : ''}`} />,
+            icon: <FastfoodIcon className={`option__icon dinespace-font-size__medium ${Number(diningOption) === 1 ? 'option-chosen' : ''}`} />,
             label: 'Dine Out'
         },
         {
@@ -120,11 +136,11 @@ const DiningOption = ({ className }) => {
             { 
                 diningOption === undefined ? 
                 
-                <label className='dinespace-label'> Dining Option </label> 
+                <label className='dinespace-label dinespace-font-size__medium'> Dining Option </label> 
                 :
                 <div className='inner-title__container'>
                     { diningOptions[diningOption-1].icon }
-                    <label className='option__label option-chosen'> { diningOptions[diningOption-1].label } </label>
+                    <label className='option__label option-chosen dinespace-font-size__medium'> { diningOptions[diningOption-1].label } </label>
                 </div>
             }
             { 
@@ -145,7 +161,7 @@ const DiningOption = ({ className }) => {
 
                                     <div className='option' id={option.id} onClick={handleOptionClick} key={index}>
                                         { option.icon }
-                                        <label className={`option__label ${Number(diningOption) === Number(option.id) ? 'option-chosen' : ''}`}> { option.label } </label>
+                                        <label className={`option__label dinespace-font-size__medium ${Number(diningOption) === Number(option.id) ? 'option-chosen' : ''}`}> { option.label } </label>
                                     </div>
 
                                 )}).reduce((previous, current) => [previous, <hr className='options__line-break'key={Math.random()}/>, current])

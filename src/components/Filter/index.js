@@ -59,6 +59,26 @@ const Wrapper = styled.div`
         vertical-align: middle;
         margin-right: 10px;
     }
+
+    @media screen and (max-width: 400px) {
+        .filter-item__container {
+            padding: 2vw 6vw;
+        }
+        
+        .filter-item__image {
+            width: 10vw;
+            height: 10vw;
+        }
+
+        .filter-button__container {
+            padding: 3vw;
+        }
+
+        .filter-button__icon {
+            margin-bottom: -2vw;
+            font-size: 9vw;
+        }
+    }
 `
 
 export const Filter = () => {
@@ -99,7 +119,7 @@ export const Filter = () => {
         <Wrapper>
             <div className='filter-button__container'>
                 <TuneIcon className='filter-button__icon'/>
-                { filterExtended ? <label> Filter </label> : 
+                { filterExtended ? <label className='dinespace-font-size__medium'> Filter </label> : 
                     <div className='notification__container'>
                         <div className='notification__number'> { notificationNumber } </div>
                     </div> 
@@ -108,7 +128,7 @@ export const Filter = () => {
             <div className='filters__container' ref={filterRef}>
                 {
                     filterItems.map((item, index) => {return(
-                        <div className='filter-item__container' key={index}>
+                        <div className='filter-item__container dinespace-font-size__medium' key={index}>
                             <img className='filter-item__image' src={item.src} />
                             { item.text }
                         </div>

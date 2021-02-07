@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 
     .search__icon {
         vertical-align: middle;
-        font-size: 26px !important;
+        font-size: 26px;
         margin-bottom: 2px;
     }
 
@@ -22,13 +22,23 @@ const Wrapper = styled.div`
     .search__input::placeholder {
         color: var(--grey);
     }
+    
+    @media screen and (max-width: 400px) {
+        .search__input {
+            font-size: Calc(1vw * 5);
+        }
+
+        .search__icon {
+            font-size: 7vw;
+        }
+    }
 `
 
 const Search = ({ className }) => {
     return (
         <Wrapper className={className}>
             <SearchIcon className='search__icon' />
-            <input name='Search' placeholder='Search Restaurant or Category' className='dinespace-text__medium search__input' />
+            <input name='Search' placeholder='Search Restaurant or Category' className='dinespace-font-size__medium search__input' />
         </Wrapper>
     )
 }

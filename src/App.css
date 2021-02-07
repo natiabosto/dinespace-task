@@ -20,6 +20,18 @@ body {
   text-align: center;
 }
 
+/* responsive styles */
+
+.dinespace-font-size__medium {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .dinespace-font-size__medium {
+    font-size: 4vw !important;
+  }
+}
+
 /* common styles for components */
 
 .shadowed-border {
@@ -30,10 +42,6 @@ body {
 
 .dinespace-label {
   vertical-align: middle;
-}
-
-.dinespace-text__medium {
-  font-size: 20px;
 }
 
 .shadow-styler {

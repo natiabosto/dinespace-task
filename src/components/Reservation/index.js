@@ -49,6 +49,12 @@ const Wrapper = styled.div`
         border-left: 1px solid var(--borderColor)
     }
 
+    @media screen and (max-width: 400px) {
+        .dining-option,
+        .search {
+            padding: 3vw;
+        }
+    }
 `
 
 export const Reservation = () => {

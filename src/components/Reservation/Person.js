@@ -17,6 +17,8 @@ const Wrapper = styled.div`
 
         > * {
             pointer-events: none;
+            display: inline-block;
+            vertical-align: middle;
         }
     }
     
@@ -24,7 +26,12 @@ const Wrapper = styled.div`
         color: var(--grey);
         vertical-align: middle;
         font-size: 22px !important;
-        margin-bottom: 2px;
+        margin-right: 7px;
+        margin-bottom: 0;
+    }
+
+    .person__label {
+        margin-top: 0;
     }
 
     .expand-more,
@@ -78,6 +85,29 @@ const Wrapper = styled.div`
         text-align: center;
     }
 
+    @media screen and (max-width: 400px) {
+        .expand-more,
+        .expand-less {
+            font-size: 10vw;
+        }
+        
+        .plus-minus__icon {
+            font-size: 10vw;
+        }
+
+        .person__icon {
+            margin-top: 6px;
+            font-size: 5vw !important;
+        }
+
+        .person__label {
+            margin-top: 6px;
+        }
+
+        .person__name {
+            padding: 3vw;
+        }
+    }
 `
 
 const Person = ({ className }) => {
@@ -101,17 +131,17 @@ const Person = ({ className }) => {
 
     return (
         <Wrapper className={className}>
-            <div className='person__name' onClick={handleExpansion}>
+            <div className='person__name dinespace-font-size__medium' onClick={handleExpansion}>
                 {
                 personCount === 1 ?
                 <>
                     <PersonIcon className='person__icon' />
-                    <label> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
+                    <label className='person__label dinespace-font-size__medium'> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
                 </>
                 :
                 <>
                     <PeopleIcon className='person__icon' />
-                    <label> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
+                    <label className='person__label dinespace-font-size__medium'> { personCount === 1 ? `Person` : `${ personCount } People` } </label>
                 </>
             }
             { 
@@ -134,11 +164,15 @@ const Person = ({ className }) => {
                                     :
                                     <PeopleIcon className='group-size__icon' />
                                 }
-                                Group Size
+                                <label className='dinespace-font-size__medium'>Group Size</label>
                             </div>
                             <div className='group-size__changer-container'> 
                                 <RemoveCircleOutlineIcon onClick={handleMinus} className={`plus-minus__icon ${personCount === 1 ? 'plus-minus__icon-disabled' : '' }`} />
-                                <div className='person-count__number'>{ personCount }</div>
+                                <div className='person-count__number'>
+                                    <label className='dinespace-font-size__medium'>
+                                        { personCount }
+                                    </label>
+                                </div>
                                 <AddCircleOutlineIcon onClick={handlePlus} className='plus-minus__icon'/>
                             </div>
                         </div>
